@@ -11,8 +11,8 @@ class ClienteService:
     async def criar_cliente(self, cliente: Cliente) -> Cliente:
         return await self.repository.salvar(cliente)
 
-    async def buscar_por_id(self, cliente_id: UUID) -> Optional[Cliente]:
-        return await self.repository.buscar_por_id(cliente_id)
+    async def buscar_por_cpf(self, cliente_cpf: str) -> Optional[Cliente]:
+        return await self.repository.buscar_por_cpf(cliente_cpf)
 
     async def listar_clientes(self) -> List[Cliente]:
         return await self.repository.listar_todos()
