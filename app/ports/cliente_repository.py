@@ -11,7 +11,7 @@ class ClienteRepository(ABC):
         pass
 
     @abstractmethod
-    async def buscar_por_id(self, cliente_id: UUID) -> Optional[Cliente]:
+    async def buscar_por_cpf(self, cliente_cpf: str) -> Optional[Cliente]:
         pass
 
     @abstractmethod

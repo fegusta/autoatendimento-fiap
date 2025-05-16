@@ -4,7 +4,7 @@ from uuid import UUID
 from typing import List
 from app.domain.cliente import Cliente
 from app.services.cliente_service import ClienteService
-from app.adapters.repositories.cliente_sqlalchemy import ClienteRepositoryImpl
+from app.adapters.repositories.cliente_repository_impl import ClienteRepositoryImpl
 from app.adapters.repositories.models import Base
 from app.schemas.cliente_schema import ClienteCreateSchema, ClienteReadSchema
 from app.dependencies import get_session, get_cliente_service
@@ -22,9 +22,9 @@ async def criar(cliente_data: ClienteCreateSchema, service: ClienteService = Dep
     return await service.criar_cliente(cliente)
 
 
-@router.get("/{cliente_id}", response_model=ClienteReadSchema)
-async def buscar_por_id(cliente_id: UUID, service: ClienteService = Depends(get_cliente_service)):
-    cliente = await service.buscar_por_id(cliente_id)
+@router.get("/{cliente_cpf}", response_model=ClienteReadSchema)
+async def buscar_por_cpf(cliente_cpf: str, service: ClienteService = Depends(get_cliente_service)):
+    cliente = await service.buscar_por_cpf(cliente_cpf)
     if not cliente:
         raise HTTPException(status_code=404, detail="Cliente não encontrado")
     return cliente

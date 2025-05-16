@@ -1,6 +1,6 @@
-from app.adapters.repositories.cliente_sqlalchemy import ClienteRepositoryImpl
+from app.adapters.repositories.cliente_repository_impl import ClienteRepositoryImpl
 from app.services.cliente_service import ClienteService
-from app.db import get_session
+from app.db.db import get_session
 from fastapi import Depends
 from sqlalchemy.ext.asyncio import AsyncSession
 
