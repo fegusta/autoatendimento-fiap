@@ -4,7 +4,7 @@ from typing import Optional
 from enum import Enum
 
 
-class CategoriaEnum(str, Enum):
+class CategoriaProduto(str, Enum):
     LANCHE = "Lanche"
     ACOMPANHAMENTO = "Acompanhamento"
     BEBIDA = "Bebida"
@@ -17,8 +17,9 @@ class Produto:
         nome: str,
         descricao: str,
         preco: float,
-        categoria: CategoriaEnum,
+        categoria: CategoriaProduto,
         id: Optional[UUID] = None,
+        imagem_url: Optional[str] = None,
         data_criacao: Optional[datetime] = None
     ):
         self.id = id or uuid4()
@@ -26,4 +27,5 @@ class Produto:
         self.descricao = descricao
         self.preco = preco
         self.categoria = categoria
+        self.imagem_url = imagem_url
         self.data_criacao = data_criacao or datetime.utcnow()

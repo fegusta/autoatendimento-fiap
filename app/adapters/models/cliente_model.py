@@ -1,11 +1,11 @@
-from sqlalchemy.orm import declarative_base, Mapped, mapped_column
+from sqlalchemy.orm import Mapped, mapped_column
 from sqlalchemy import String, DateTime
 from uuid import uuid4, UUID
 from datetime import datetime
 from typing import Optional
 from app.domain.cliente import Cliente
+from app.adapters.models.base import Base
 
-Base = declarative_base()
 
 class ClienteModel(Base):
     __tablename__ = "clientes"
