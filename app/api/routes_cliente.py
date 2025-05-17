@@ -5,7 +5,7 @@ from typing import List
 from app.domain.cliente import Cliente
 from app.services.cliente_service import ClienteService
 from app.adapters.repositories.cliente_repository_impl import ClienteRepositoryImpl
-from app.adapters.repositories.models import Base
+from app.adapters.models.base import Base
 from app.schemas.cliente_schema import ClienteCreateSchema, ClienteReadSchema
 from app.dependencies import get_session, get_cliente_service
 
