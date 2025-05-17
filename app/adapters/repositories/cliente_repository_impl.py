@@ -4,7 +4,7 @@ from uuid import UUID
 from typing import Optional, List
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select
-from app.adapters.repositories.models import ClienteModel
+from app.adapters.models.cliente_model import ClienteModel
 
 
 class ClienteRepositoryImpl(ClienteRepository):
