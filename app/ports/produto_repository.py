@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 from uuid import UUID
 from typing import List, Optional
-from domain.produto import Produto, CategoriaProduto
+from app.domain.produto import Produto, CategoriaProduto
 
 
 class ProdutoRepository(ABC):
