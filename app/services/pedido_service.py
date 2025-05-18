@@ -24,3 +24,7 @@ class PedidoService:
 
     async def atualizar_status(self, pedido_id: UUID, status: StatusPedido) -> Pedido:
         return await self.repository.atualizar_status(pedido_id, status)
+    
+    async def listar_pedidos_em_andamento(self) -> List[Pedido]:
+        return await self.repository.buscar_em_andamento()
+

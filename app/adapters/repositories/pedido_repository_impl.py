@@ -47,3 +47,11 @@ class PedidoRepositoryImpl(PedidoRepository):
         )
         pedidos = result.scalars().all()
         return [p.to_entity() for p in pedidos]
+    
+    async def buscar_em_andamento(self) -> List[Pedido]:
+        result = await self.session.execute(
+            select(PedidoModel).where(PedidoModel.status != StatusPedido.FINALIZADO).order_by(PedidoModel.data_criacao)
+        )
+        pedidos = result.scalars().all()
+        return [Pedido.from_model(p) for p in pedidos]
+
