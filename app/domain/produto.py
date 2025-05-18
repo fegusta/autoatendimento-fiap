@@ -2,13 +2,7 @@ from uuid import UUID, uuid4
 from datetime import datetime
 from typing import Optional
 from enum import Enum
-
-
-class CategoriaProduto(str, Enum):
-    LANCHE = "Lanche"
-    ACOMPANHAMENTO = "Acompanhamento"
-    BEBIDA = "Bebida"
-    SOBREMESA = "Sobremesa"
+from app.domain.enums.categoria_produto import CategoriaProduto
 
 
 class Produto:
