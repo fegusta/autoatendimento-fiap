@@ -3,6 +3,10 @@ from datetime import datetime
 from typing import List, Optional
 from enum import Enum
 from app.domain.enums.status_pedido import StatusPedido
+from typing import List, Optional, TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from app.adapters.models.pedido_model import PedidoModel
 
 class Pedido:
     def __init__(
@@ -18,3 +22,13 @@ class Pedido:
         self.cliente_id = cliente_id
         self.status = status
         self.data_criacao = data_criacao or datetime.utcnow()
+
+    @staticmethod
+    def from_model(model: "PedidoModel") -> "Pedido":
+        return Pedido(
+            id=model.id,
+            produtos_ids=model.produtos_ids,
+            cliente_id=model.cliente_id,
+            status=model.status,
+            data_criacao=model.data_criacao,
+        )
