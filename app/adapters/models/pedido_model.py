@@ -37,3 +37,13 @@ class PedidoModel(Base):
             status=pedido.status.value,
             data_criacao=pedido.data_criacao
         )
+    
+    @staticmethod
+    def from_model(model: "PedidoModel") -> "Pedido":
+        return Pedido(
+            id=model.id,
+            produtos_ids=model.produtos_ids,
+            cliente_id=model.cliente_id,
+            status=model.status,
+            data_criacao=model.data_criacao
+        )
