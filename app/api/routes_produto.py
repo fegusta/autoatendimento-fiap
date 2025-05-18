@@ -4,6 +4,7 @@ from uuid import UUID
 from app.schemas.produto_schema import ProdutoCreate, ProdutoRead, ProdutoUpdate
 from app.services.produto_service import ProdutoService
 from app.dependencies import get_produto_service
+from app.domain.enums.categoria_produto import CategoriaProduto
 
 router = APIRouter(prefix="/produtos", tags=["Produtos"])
 
@@ -12,6 +13,14 @@ router = APIRouter(prefix="/produtos", tags=["Produtos"])
 async def criar_produto(produto: ProdutoCreate, service: ProdutoService = Depends(get_produto_service)):
     return await service.criar_produto(produto)
 
+@router.get("/categorias", response_model=List[str])
+async def listar_categorias():
+    return [categoria.value for categoria in CategoriaProduto]
+
+
+@router.get("/categorias/{categoria}", response_model=List[ProdutoRead])
+async def buscar_por_categoria(categoria: str, service: ProdutoService = Depends(get_produto_service)):
+    return await service.buscar_por_categoria(categoria)
 
 @router.get("/{produto_id}", response_model=ProdutoRead)
 async def buscar_produto(produto_id: UUID, service: ProdutoService = Depends(get_produto_service)):
@@ -36,8 +45,3 @@ async def atualizar_produto(produto_id: UUID, produto: ProdutoUpdate, service: P
 async def remover_produto(produto_id: UUID, service: ProdutoService = Depends(get_produto_service)):
     await service.remover_produto(produto_id)
     return {"detail": "Produto removido com sucesso"}
-
-
-@router.get("/categoria/{categoria}", response_model=List[ProdutoRead])
-async def buscar_por_categoria(categoria: str, service: ProdutoService = Depends(get_produto_service)):
-    return await service.buscar_por_categoria(categoria)
