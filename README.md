@@ -43,9 +43,7 @@ dependencies.py               # Dependency injection
 - [x] Atualização do status do pedido (`Recebido`, `Em preparação`, `Pronto`, `Finalizado`)
 - [x] Fila de pedidos gerenciada diretamente no banco de dados
 - [x] Listagem dos pedidos em andamento
-- [ ] Containerização com Docker
-- [ ] Script para criação de tabelas (`execute_ddl.py`)
-- [ ] Vídeo de demonstração
+- [x] Listagem das castegorias
 
 ---
 
