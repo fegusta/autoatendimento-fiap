@@ -1,0 +1,30 @@
+version: "3.9"
+
+services:
+  db:
+    image: postgres:15
+    container_name: autoatendimento-db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: Auto@Lanche2025
+      POSTGRES_DB: autoatendimento
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+      - ./schema.sql:/docker-entrypoint-initdb.d/schema.sql:ro
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: autoatendimento-app
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=postgresql+asyncpg://postgres:Auto@Lanche2025@db/autoatendimento
+    depends_on:
+      - db
+    command: ["/bin/sh", "-c", "sleep 30 && /wait-for-it.sh db:5432 -- uvicorn app.main:app --host 0.0.0.0 --port 8000"]
+
+volumes:
+  db_data:
