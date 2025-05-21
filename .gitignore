@@ -13,3 +13,11 @@ Thumbs.db
 # Ignorar arquivos de IDEs
 .vscode/
 .idea/
+
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+.terraform.lock.hcl
+crash.log
+terraform.tfvars
