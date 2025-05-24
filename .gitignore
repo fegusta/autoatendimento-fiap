@@ -21,3 +21,6 @@ Thumbs.db
 .terraform.lock.hcl
 terraform.tfvars
 
+# Não versionar segredos
+infra/terraform/terraform.tfvars
+
