@@ -1,7 +1,6 @@
 from abc import ABC, abstractmethod
-from uuid import UUID
 from typing import Optional, List
-from app.domain.cliente import Cliente
+from app.core.domain.cliente import Cliente
 
 
 class ClienteRepository(ABC):

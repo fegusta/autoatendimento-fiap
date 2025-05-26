@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 from uuid import UUID
 from typing import List, Optional
-from app.domain.pedido import Pedido
+from app.core.domain.pedido import Pedido
 
 
 class PedidoRepository(ABC):

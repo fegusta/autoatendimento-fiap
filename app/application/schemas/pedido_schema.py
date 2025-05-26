@@ -2,7 +2,7 @@ from pydantic import BaseModel
 from typing import List, Optional
 from uuid import UUID
 from datetime import datetime
-from app.domain.enums.status_pedido import StatusPedido
+from app.core.domain.enums.status_pedido import StatusPedido
 
 
 class PedidoCreate(BaseModel):

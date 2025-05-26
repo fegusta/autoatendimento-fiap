@@ -1,10 +1,10 @@
 from fastapi import APIRouter, Depends, HTTPException
 from typing import List
 from uuid import UUID
-from app.schemas.produto_schema import ProdutoCreate, ProdutoRead, ProdutoUpdate
-from app.services.produto_service import ProdutoService
+from app.application.schemas.produto_schema import ProdutoCreate, ProdutoRead, ProdutoUpdate
+from app.core.services.produto_service import ProdutoService
 from app.dependencies import get_produto_service
-from app.domain.enums.categoria_produto import CategoriaProduto
+from app.core.domain.enums.categoria_produto import CategoriaProduto
 
 router = APIRouter(prefix="/produtos", tags=["Produtos"])
 

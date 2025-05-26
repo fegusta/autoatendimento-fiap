@@ -1,7 +1,6 @@
-from app.ports.cliente_repository import ClienteRepository
-from app.domain.cliente import Cliente
+from app.core.domain.interfaces.cliente_repository import ClienteRepository
+from app.core.domain.cliente import Cliente
 from typing import List, Optional
-from uuid import UUID
 
 
 class ClienteService:

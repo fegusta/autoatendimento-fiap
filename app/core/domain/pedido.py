@@ -1,8 +1,6 @@
 from uuid import UUID, uuid4
 from datetime import datetime
-from typing import List, Optional
-from enum import Enum
-from app.domain.enums.status_pedido import StatusPedido
+from app.core.domain.enums.status_pedido import StatusPedido
 from typing import List, Optional, TYPE_CHECKING
 
 if TYPE_CHECKING:
