@@ -1,7 +1,7 @@
 from fastapi import FastAPI
-from app.ports.api.routes_cliente import router as cliente_router
-from app.ports.api.routes_produto import router as produto_router
-from app.ports.api.routes_pedido import router as pedido_router
+from app.ports.api.v1.routes_cliente import router as cliente_router
+from app.ports.api.v1.routes_produto import router as produto_router
+from app.ports.api.v1.routes_pedido import router as pedido_router
 from app.adapters.models.base import Base
 from app.adapters.db import engine
 

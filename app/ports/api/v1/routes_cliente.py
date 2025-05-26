@@ -1,11 +1,11 @@
 from fastapi import APIRouter, Depends, HTTPException
 from typing import List
 from app.core.domain.cliente import Cliente
-from app.core.services.cliente_service import ClienteService
+from app.application.services.cliente_service import ClienteService
 from app.application.schemas.cliente_schema import ClienteCreateSchema, ClienteReadSchema
 from app.dependencies import get_cliente_service
 
-router = APIRouter(prefix="/clientes", tags=["Clientes"])
+router = APIRouter(prefix="v1/clientes", tags=["Clientes"])
 
 
 @router.post("", response_model=ClienteReadSchema)

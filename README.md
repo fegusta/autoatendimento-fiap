@@ -20,17 +20,20 @@ Este projeto é uma API backend desenvolvida em FastAPI utilizando arquitetura h
 
 ```
 app/
-├── adapters/
-│   ├── models/               # Modelos ORM (SQLAlchemy)
-│   └── repositories/         # Implementações dos repositórios
-├── api/                      # Rotas da API (FastAPI)
-├── db/                       # Configuração de banco
-├── domain/                   # Entidades do domínio
-├── ports/                    # Interfaces (ports)
-├── schemas/                  # Pydantic Schemas
-├── services/                 # Regras de negócio
-main.py                       # Entry point
-dependencies.py               # Dependency injection
+├── adapters/                  # Concrete implementations (infrastructure)
+│   ├── db.py                  # Database configuration
+│   ├── models/                # ORM Models (SQLAlchemy)
+│   └── repositories/          # Concrete repositories
+├── application/               # Application layer
+│   ├── schemas/               # Pydantic Schemas (input/output validation)
+│   └── services/              # services 
+├── core                       # Principal layer  
+|   |__ domain/                # Entities and business rules
+├── ports/                     # Interfaces (ports)
+│   ├── api/                   # Rotas da API (FastAPI)
+|       |__v1                  # Version 1 routes
+main.py                        # Entry point
+dependencies.py                # Dependency injection
 ```
 
 ---
