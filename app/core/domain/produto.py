@@ -1,8 +1,7 @@
 from uuid import UUID, uuid4
 from datetime import datetime
 from typing import Optional
-from enum import Enum
-from app.domain.enums.categoria_produto import CategoriaProduto
+from app.core.domain.enums.categoria_produto import CategoriaProduto
 
 
 class Produto:

@@ -1,6 +1,5 @@
-from app.domain.cliente import Cliente
-from app.ports.cliente_repository import ClienteRepository
-from uuid import UUID
+from app.core.domain.cliente import Cliente
+from app.core.domain.interfaces.cliente_repository import ClienteRepository
 from typing import Optional, List
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select

@@ -1,9 +1,9 @@
 from uuid import UUID
 from typing import List
-from app.domain.pedido import Pedido
-from app.ports.pedido_repository import PedidoRepository
-from app.schemas.pedido_schema import PedidoCreate
-from app.domain.enums.status_pedido import StatusPedido
+from app.core.domain.pedido import Pedido
+from app.core.domain.interfaces.pedido_repository import PedidoRepository
+from app.application.schemas.pedido_schema import PedidoCreate
+from app.core.domain.enums.status_pedido import StatusPedido
 
 class PedidoService:
     def __init__(self, repository: PedidoRepository):

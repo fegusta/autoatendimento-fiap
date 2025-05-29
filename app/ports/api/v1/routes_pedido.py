@@ -1,15 +1,12 @@
 from fastapi import APIRouter, Depends, HTTPException
 from typing import List
 from uuid import UUID
-from app.schemas.pedido_schema import PedidoCreate, PedidoRead, PedidoUpdate
-from app.services.pedido_service import PedidoService
-from app.domain.enums.status_pedido import StatusPedido
-from app.schemas.pedido_schema import AtualizarStatusPedidoSchema
+from app.application.schemas.pedido_schema import PedidoCreate, PedidoRead, PedidoUpdate
+from app.application.services.pedido_service import PedidoService
+from app.application.schemas.pedido_schema import AtualizarStatusPedidoSchema
 from app.dependencies import get_pedido_service
 
-router = APIRouter(prefix="/pedidos", tags=["Pedidos"])
-
-
+router = APIRouter(prefix="v1/pedidos", tags=["Pedidos"])
 @router.post("", response_model=PedidoRead)
 async def criar_pedido(pedido: PedidoCreate, service: PedidoService = Depends(get_pedido_service)):
     return await service.criar_pedido(pedido)

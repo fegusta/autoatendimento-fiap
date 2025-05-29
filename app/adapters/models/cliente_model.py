@@ -3,7 +3,7 @@ from sqlalchemy import String, DateTime
 from uuid import uuid4, UUID
 from datetime import datetime
 from typing import Optional
-from app.domain.cliente import Cliente
+from app.core.domain.cliente import Cliente
 from app.adapters.models.base import Base
 
 
