@@ -3,13 +3,8 @@ from uuid import UUID
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.future import select
 from app.adapters.models.produto_model import ProdutoModel
-<<<<<<< HEAD
 from app.core.domain.produto import Produto, CategoriaProduto
 from app.core.domain.interfaces.produto_repository import ProdutoRepository
-=======
-from app.domain.produto import Produto, CategoriaProduto
-from app.ports.produto_repository import ProdutoRepository
->>>>>>> origin/main
 
 
 class ProdutoRepositoryImpl(ProdutoRepository):
