@@ -2,14 +2,17 @@ from uuid import UUID, uuid4
 from datetime import datetime
 from typing import Optional
 from app.core.domain.enums.categoria_produto import CategoriaProduto
+from app.core.domain.value_objects.descricao import Descricao
+from app.core.domain.value_objects.nome import Nome
+from app.core.domain.value_objects.preco import Preco
 
 
 class Produto:
     def __init__(
         self,
-        nome: str,
-        descricao: str,
-        preco: float,
+        nome: Nome,
+        descricao: Descricao,
+        preco: Preco,
         categoria: CategoriaProduto,
         id: Optional[UUID] = None,
         imagem_url: Optional[str] = None,
