@@ -1,8 +1,8 @@
 from uuid import UUID
 from typing import List
-from app.domain.produto import Produto
-from app.ports.produto_repository import ProdutoRepository
-from app.schemas.produto_schema import ProdutoCreate
+from app.core.domain.produto import Produto
+from app.core.domain.interfaces.produto_repository import ProdutoRepository
+from app.application.schemas.produto_schema import ProdutoCreate
 
 class ProdutoService:
     def __init__(self, repository: ProdutoRepository):

@@ -1,9 +1,9 @@
 from fastapi import FastAPI
-from app.api.routes_cliente import router as cliente_router
-from app.api.routes_produto import router as produto_router
-from app.api.routes_pedido import router as pedido_router
+from app.ports.api.v1.routes_cliente import router as cliente_router
+from app.ports.api.v1.routes_produto import router as produto_router
+from app.ports.api.v1.routes_pedido import router as pedido_router
 from app.adapters.models.base import Base
-from app.db.db import engine
+from app.adapters.db import engine
 
 app = FastAPI(title="API Autoatendimento FIAP")
 

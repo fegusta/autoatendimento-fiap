@@ -4,10 +4,9 @@ from sqlalchemy.dialects.postgresql import UUID as PG_UUID, ARRAY
 from uuid import uuid4, UUID
 from datetime import datetime
 from typing import List, Optional
-
 from app.adapters.models.base import Base
-from app.domain.pedido import Pedido
-from app.domain.enums.status_pedido import StatusPedido
+from app.core.domain.pedido import Pedido
+from app.core.domain.enums.status_pedido import StatusPedido
 
 
 class PedidoModel(Base):

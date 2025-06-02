@@ -4,9 +4,9 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.future import select
 
 from app.adapters.models.pedido_model import PedidoModel
-from app.domain.pedido import Pedido
-from app.domain.enums.status_pedido import StatusPedido
-from app.ports.pedido_repository import PedidoRepository
+from app.core.domain.pedido import Pedido
+from app.core.domain.enums.status_pedido import StatusPedido
+from app.core.domain.interfaces.pedido_repository import PedidoRepository
 
 
 class PedidoRepositoryImpl(PedidoRepository):

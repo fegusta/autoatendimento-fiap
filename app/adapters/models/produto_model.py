@@ -3,7 +3,7 @@ from sqlalchemy import String, DateTime, Enum as SqlEnum, Numeric
 from uuid import uuid4, UUID
 from datetime import datetime
 from typing import Optional
-from app.domain.produto import Produto, CategoriaProduto
+from app.core.domain.produto import Produto, CategoriaProduto
 from app.adapters.models.base import Base
 
 

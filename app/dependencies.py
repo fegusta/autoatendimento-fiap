@@ -1,10 +1,10 @@
 from app.adapters.repositories.cliente_repository_impl import ClienteRepositoryImpl
-from app.services.cliente_service import ClienteService
+from app.application.services.cliente_service import ClienteService
 from app.adapters.repositories.produto_repository_impl import ProdutoRepositoryImpl
-from app.services.produto_service import ProdutoService
+from app.application.services.produto_service import ProdutoService
 from app.adapters.repositories.pedido_repository_impl import PedidoRepositoryImpl
-from app.services.pedido_service import PedidoService
-from app.db.db import get_session
+from app.application.services.pedido_service import PedidoService
+from app.adapters.db import get_session
 from fastapi import Depends
 from sqlalchemy.ext.asyncio import AsyncSession
 

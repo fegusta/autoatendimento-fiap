@@ -1,8 +1,6 @@
 from uuid import UUID, uuid4
 from datetime import datetime
-from typing import List, Optional
-from enum import Enum
-from app.domain.enums.status_pedido import StatusPedido
+from app.core.domain.enums.status_pedido import StatusPedido
 from typing import List, Optional, TYPE_CHECKING
 
 if TYPE_CHECKING:
@@ -17,6 +15,9 @@ class Pedido:
         id: Optional[UUID] = None,
         data_criacao: Optional[datetime] = None
     ):
+        if not produtos_ids or len(produtos_ids) == 0:
+            raise ValueError("O pedido deve conter pelo menos um produto.")
+        
         self.id = id or uuid4()
         self.produtos_ids = produtos_ids
         self.cliente_id = cliente_id
