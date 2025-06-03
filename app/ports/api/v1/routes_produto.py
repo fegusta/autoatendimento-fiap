@@ -8,7 +8,6 @@ from app.core.domain.enums.categoria_produto import CategoriaProduto
 
 router = APIRouter(prefix="/v1/produtos", tags=["Produtos"])
 
-
 @router.post("", response_model=ProdutoRead)
 async def criar_produto(produto: ProdutoCreate, service: ProdutoService = Depends(get_produto_service)):
     return await service.criar_produto(produto)

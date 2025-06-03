@@ -7,7 +7,6 @@ from app.dependencies import get_cliente_service
 
 router = APIRouter(prefix="/v1/clientes", tags=["Clientes"])
 
-
 @router.post("", response_model=ClienteReadSchema)
 async def criar(cliente_data: ClienteCreateSchema, service: ClienteService = Depends(get_cliente_service)):
     cliente = Cliente(
