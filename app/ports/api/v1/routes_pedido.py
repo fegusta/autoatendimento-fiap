@@ -6,7 +6,7 @@ from app.application.services.pedido_service import PedidoService
 from app.application.schemas.pedido_schema import AtualizarStatusPedidoSchema
 from app.dependencies import get_pedido_service
 
-router = APIRouter(prefix="v1/pedidos", tags=["Pedidos"])
+router = APIRouter(prefix="/v1/pedidos", tags=["Pedidos"])
 @router.post("", response_model=PedidoRead)
 async def criar_pedido(pedido: PedidoCreate, service: PedidoService = Depends(get_pedido_service)):
     return await service.criar_pedido(pedido)

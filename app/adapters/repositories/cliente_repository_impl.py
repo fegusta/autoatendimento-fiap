@@ -9,13 +9,28 @@ from app.adapters.models.cliente_model import ClienteModel
 class ClienteRepositoryImpl(ClienteRepository):
     def __init__(self, session: AsyncSession):
         self.session = session
-
+    
     async def salvar(self, cliente: Cliente) -> Cliente:
-        model = ClienteModel.from_entity(cliente)
-        self.session.add(model)
+        db_cliente = ClienteModel(
+            id=cliente.id,
+            nome=str(cliente.nome),   # <-- transforma VO em string
+            email=str(cliente.email),
+            cpf=str(cliente.cpf),     # <-- transforma VO em string
+            data_criacao=cliente.data_criacao
+        )
+
+        self.session.add(db_cliente)
         await self.session.commit()
-        await self.session.refresh(model)
-        return model.to_entity()
+        await self.session.refresh(db_cliente)
+
+        return cliente
+
+    # async def salvar(self, cliente: Cliente) -> Cliente:
+    #     model = ClienteModel.from_entity(cliente)
+    #     self.session.add(model)
+    #     await self.session.commit()
+    #     await self.session.refresh(model)
+    #     return model.to_entity()
 
     async def buscar_por_cpf(self, cliente_cpf: str) -> Optional[Cliente]:
         stmt = select(ClienteModel).where(ClienteModel.cpf == cliente_cpf)

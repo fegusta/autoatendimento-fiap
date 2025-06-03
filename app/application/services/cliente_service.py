@@ -16,7 +16,7 @@ class ClienteService:
         cliente = Cliente(
             nome=Nome(cliente_schema.nome),
             email=Email(cliente_schema.email),
-            cpf=CPF(cliente_schema.cpf)
+            cpf=CPF(cliente_schema.cpf),            
         )
         
         return await self.repository.salvar(cliente)

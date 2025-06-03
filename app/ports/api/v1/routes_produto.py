@@ -6,7 +6,7 @@ from app.application.services.produto_service import ProdutoService
 from app.dependencies import get_produto_service
 from app.core.domain.enums.categoria_produto import CategoriaProduto
 
-router = APIRouter(prefix="v1/produtos", tags=["Produtos"])
+router = APIRouter(prefix="/v1/produtos", tags=["Produtos"])
 
 
 @router.post("", response_model=ProdutoRead)
