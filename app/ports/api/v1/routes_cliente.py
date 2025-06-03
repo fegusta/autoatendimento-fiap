@@ -5,7 +5,7 @@ from app.application.services.cliente_service import ClienteService
 from app.application.schemas.cliente_schema import ClienteCreateSchema, ClienteReadSchema
 from app.dependencies import get_cliente_service
 
-router = APIRouter(prefix="v1/clientes", tags=["Clientes"])
+router = APIRouter(prefix="/clientes", tags=["Clientes"])
 
 
 @router.post("", response_model=ClienteReadSchema)
