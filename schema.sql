@@ -13,7 +13,7 @@ CREATE TABLE produtos (
 	descricao VARCHAR(255), 
 	preco NUMERIC(10, 2) NOT NULL, 
 	imagem_url VARCHAR(255), 
-	categoria categoriaproduto NOT NULL, 
+	categoria VARCHAR(255) NOT NULL, 
 	data_criacao TIMESTAMP WITHOUT TIME ZONE NOT NULL, 
 	PRIMARY KEY (id)
 );
