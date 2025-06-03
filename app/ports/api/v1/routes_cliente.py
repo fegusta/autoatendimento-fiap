@@ -5,8 +5,7 @@ from app.application.services.cliente_service import ClienteService
 from app.application.schemas.cliente_schema import ClienteCreateSchema, ClienteReadSchema
 from app.dependencies import get_cliente_service
 
-router = APIRouter(prefix="v1/clientes", tags=["Clientes"])
-
+router = APIRouter(prefix="/v1/clientes", tags=["Clientes"])
 
 @router.post("", response_model=ClienteReadSchema)
 async def criar(cliente_data: ClienteCreateSchema, service: ClienteService = Depends(get_cliente_service)):
@@ -15,7 +14,14 @@ async def criar(cliente_data: ClienteCreateSchema, service: ClienteService = Dep
         email=cliente_data.email,
         cpf=cliente_data.cpf,
     )
-    return await service.criar_cliente(cliente)
+    cliente_criado = await service.criar_cliente(cliente)
+    return ClienteReadSchema(
+        id=cliente_criado.id,
+        nome=str(cliente_criado.nome),
+        email=str(cliente_criado.email),
+        cpf=str(cliente_criado.cpf),
+        data_criacao=cliente_criado.data_criacao
+    )
 
 
 @router.get("/{cliente_cpf}", response_model=ClienteReadSchema)
