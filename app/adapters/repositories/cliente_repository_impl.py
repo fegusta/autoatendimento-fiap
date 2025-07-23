@@ -1,43 +1,36 @@
-from app.core.domain.cliente import Cliente
-from app.core.domain.interfaces.cliente_repository import ClienteRepository
-from typing import Optional, List
 from sqlalchemy.ext.asyncio import AsyncSession
-from sqlalchemy import select
+from sqlalchemy.future import select
+from typing import Optional, List
+from uuid import UUID
+
+from app.core.domain.cliente import Cliente
+from app.ports.cliente_repository import ClienteRepository
 from app.adapters.models.cliente_model import ClienteModel
 
 
 class ClienteRepositoryImpl(ClienteRepository):
     def __init__(self, session: AsyncSession):
         self.session = session
-    
-    async def salvar(self, cliente: Cliente) -> Cliente:
-        db_cliente = ClienteModel(
-            id=cliente.id,
-            nome=str(cliente.nome),   # <-- transforma VO em string
-            email=str(cliente.email),
-            cpf=str(cliente.cpf),     # <-- transforma VO em string
-            data_criacao=cliente.data_criacao
-        )
 
+    async def criar(self, cliente: Cliente) -> Cliente:
+        db_cliente = ClienteModel.from_entity(cliente)
         self.session.add(db_cliente)
         await self.session.commit()
         await self.session.refresh(db_cliente)
+        return db_cliente.to_entity()
 
-        return cliente
+    async def buscar_por_id(self, cliente_id: UUID) -> Optional[Cliente]:
+        result = await self.session.get(ClienteModel, cliente_id)
+        return result.to_entity() if result else None
 
-    # async def salvar(self, cliente: Cliente) -> Cliente:
-    #     model = ClienteModel.from_entity(cliente)
-    #     self.session.add(model)
-    #     await self.session.commit()
-    #     await self.session.refresh(model)
-    #     return model.to_entity()
-
-    async def buscar_por_cpf(self, cliente_cpf: str) -> Optional[Cliente]:
-        stmt = select(ClienteModel).where(ClienteModel.cpf == cliente_cpf)
-        result = await self.session.execute(stmt)
-        row = result.scalar_one_or_none()
-        return row.to_entity() if row else None
+    async def buscar_por_cpf(self, cpf: str) -> Optional[Cliente]:
+        result = await self.session.execute(
+            select(ClienteModel).where(ClienteModel.cpf == cpf)
+        )
+        cliente = result.scalars().first()
+        return cliente.to_entity() if cliente else None
 
     async def listar_todos(self) -> List[Cliente]:
         result = await self.session.execute(select(ClienteModel))
-        return [c.to_entity() for c in result.scalars().all()]
+        clientes = result.scalars().all()
+        return [c.to_entity() for c in clientes]

@@ -1,12 +1,12 @@
 from abc import ABC, abstractmethod
-from typing import List, Optional
 from uuid import UUID
+from typing import List, Optional
 from app.core.domain.produto import Produto, CategoriaProduto
 
 
-class ProdutoRepository(ABC):
+class ProdutoService(ABC):
     @abstractmethod
-    async def criar(self, produto: Produto) -> Produto:
+    async def criar_produto(self, dados: dict) -> Produto:
         pass
 
     @abstractmethod
@@ -22,9 +22,9 @@ class ProdutoRepository(ABC):
         pass
 
     @abstractmethod
-    async def atualizar(self, produto: Produto) -> Produto:
+    async def atualizar_produto(self, produto_id: UUID, dados: dict) -> Produto:
         pass
 
     @abstractmethod
-    async def remover(self, produto_id: UUID) -> None:
+    async def remover_produto(self, produto_id: UUID) -> None:
         pass

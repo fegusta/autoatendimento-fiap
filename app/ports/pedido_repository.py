@@ -2,10 +2,10 @@ from abc import ABC, abstractmethod
 from uuid import UUID
 from typing import List, Optional
 from app.core.domain.pedido import Pedido
+from app.core.domain.enums.status_pedido import StatusPedido
 
 
 class PedidoRepository(ABC):
-
     @abstractmethod
     async def criar(self, pedido: Pedido) -> Pedido:
         pass
@@ -15,13 +15,9 @@ class PedidoRepository(ABC):
         pass
 
     @abstractmethod
-    async def listar_todos(self) -> List[Pedido]:
+    async def buscar_em_andamento(self) -> List[Pedido]:
         pass
 
     @abstractmethod
-    async def atualizar_status(self, pedido_id: UUID, novo_status: str) -> Pedido:
-        pass
-
-    @abstractmethod
-    async def listar_por_status(self, status: str) -> List[Pedido]:
+    async def atualizar_status(self, pedido_id: UUID, status: StatusPedido) -> Pedido:
         pass
