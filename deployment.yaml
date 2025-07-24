@@ -1,0 +1,109 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: autoatendimento-app
+  namespace: autoatendimento
+  labels:
+    app: autoatendimento-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: autoatendimento-app
+  template:
+    metadata:
+      labels:
+        app: autoatendimento-app
+    spec:
+      containers:
+      - name: autoatendimento-container
+        image: michelvitor2/autoatendimento-fiap:v1.0.0
+        ports:
+        - containerPort: 8000
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "100m"
+          limits:
+            memory: "256Mi"
+            cpu: "250m"
+        env:
+        - name: DATABASE_URL
+          valueFrom:
+            secretKeyRef:
+              name: db-credentials
+              key: database-url
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: autoatendimento-service
+  namespace: autoatendimento
+spec:
+  selector:
+    app: autoatendimento-app
+  ports:
+  - port: 8000
+    targetPort: 8000
+    nodePort: 30080
+  type: NodePort
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: autoatendimento
+
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: db-credentials
+  namespace: autoatendimento
+type: Opaque
+stringData:
+  database-url: "postgresql+asyncpg://postgres:Auto@Lanche2025@db:5432/autoatendimento"
+
+
+---
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: autoatendimento-hpa
+  namespace: autoatendimento
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: autoatendimento-app
+  minReplicas: 2
+  maxReplicas: 10
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 70
+  - type: Resource
+    resource:
+      name: memory
+      target:
+        type: Utilization
+        averageUtilization: 80
+  behavior:
+    scaleDown:
+      stabilizationWindowSeconds: 300
+      policies:
+      - type: Percent
+        value: 10
+        periodSeconds: 60
+    scaleUp:
+      stabilizationWindowSeconds: 0
+      policies:
+      - type: Percent
+        value: 100
+        periodSeconds: 15
+      - type: Pods
+        value: 4
+        periodSeconds: 15
+      selectPolicy: Max
