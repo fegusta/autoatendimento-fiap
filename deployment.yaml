@@ -6,7 +6,7 @@ metadata:
   labels:
     app: autoatendimento-app
 spec:
-  replicas: 2
+  replicas: 3
   selector:
     matchLabels:
       app: autoatendimento-app
@@ -61,7 +61,7 @@ metadata:
   namespace: autoatendimento
 type: Opaque
 stringData:
-  database-url: "postgresql+asyncpg://postgres:Auto@Lanche2025@db:5432/autoatendimento"
+  database-url: "postgresql+asyncpg://postgres:Bcad200965@db:5432/autoatendimento"
 
 
 ---
