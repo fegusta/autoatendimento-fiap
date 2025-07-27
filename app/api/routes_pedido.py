@@ -11,6 +11,10 @@ from app.infrastructure.db.database import get_session
 from app.infrastructure.db.pedido_repository import PedidoRepository
 from app.application.use_cases.pedido_use_case import PedidoUseCase
 from app.domain.enums.status_pedido import StatusPedido
+from app.application.use_cases.criar_pagamento_qrcode_use_case import CriarPagamentoQRCodeUseCase
+from app.infrastructure.external.mercado_pago_client import MercadoPagoClient
+from app.application.interfaces.unit_of_work import UnitOfWork
+
 
 router = APIRouter(prefix="/pedidos", tags=["Pedidos"])
 
@@ -52,3 +56,15 @@ async def atualizar_status_pedido(
     use_case = PedidoUseCase(PedidoRepository(session))
     pedido_atualizado = await use_case.atualizar_status(pedido_id, dados.status)
     return PedidoResponse.from_entity(pedido_atualizado)
+
+@router.post("/{pedido_id}/pagar")
+async def gerar_qrcode_pagamento(pedido_id: UUID):
+    uow = UnitOfWork()
+    mp_client = MercadoPagoClient()
+    use_case = CriarPagamentoQRCodeUseCase(uow, mp_client)
+
+    try:
+        result = await use_case.execute(pedido_id)
+        return result
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e))

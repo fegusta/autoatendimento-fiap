@@ -5,3 +5,4 @@ class StatusPedido(str, Enum):
     EM_PREPARACAO = "EM_PREPARACAO"
     PRONTO = "PRONTO"
     FINALIZADO = "FINALIZADO"
+    RECUSADO = "RECUSADO"

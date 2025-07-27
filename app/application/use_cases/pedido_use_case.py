@@ -37,3 +37,17 @@ class PedidoUseCase:
         novo_pedido = Pedido(produtos_ids=produtos_ids, cliente_id=cliente_id)
         pedido_criado = await self.repository.criar(novo_pedido)
         return pedido_criado.id
+    
+    async def consultar_status_pagamento(self, pedido_id: UUID) -> str:
+        pedido = await self.repository.buscar_por_id(pedido_id)
+        if not pedido:
+            raise ValueError("Pedido não encontrado")
+
+        if pedido.status == StatusPedido.RECEBIDO:
+            return "Aguardando pagamento"
+        elif pedido.status == StatusPedido.EM_PREPARACAO:
+            return "Pagamento aprovado"
+        elif pedido.status == StatusPedido.RECUSADO:
+            return "Pagamento recusado"
+        else:
+            return "Status indefinido"
