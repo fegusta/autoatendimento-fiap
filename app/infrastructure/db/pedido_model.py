@@ -1,12 +1,13 @@
 from sqlalchemy.orm import Mapped, mapped_column
-from sqlalchemy import String, DateTime, ForeignKey
+from sqlalchemy import DateTime, ForeignKey, String
 from sqlalchemy.dialects.postgresql import UUID as PG_UUID, ARRAY
 from uuid import uuid4, UUID
 from datetime import datetime
 from typing import List, Optional
-from app.adapters.models.base import Base
-from app.core.domain.pedido import Pedido
-from app.core.domain.enums.status_pedido import StatusPedido
+
+from app.infrastructure.db.base import Base
+from app.domain.pedido import Pedido
+from app.domain.enums.status_pedido import StatusPedido
 
 
 class PedidoModel(Base):
@@ -24,7 +25,7 @@ class PedidoModel(Base):
             produtos_ids=self.produtos_ids,
             cliente_id=self.cliente_id,
             status=StatusPedido(self.status),
-            data_criacao=self.data_criacao
+            data_criacao=self.data_criacao,
         )
 
     @staticmethod
@@ -34,15 +35,5 @@ class PedidoModel(Base):
             produtos_ids=pedido.produtos_ids,
             cliente_id=pedido.cliente_id,
             status=pedido.status.value,
-            data_criacao=pedido.data_criacao
-        )
-    
-    @staticmethod
-    def from_model(model: "PedidoModel") -> "Pedido":
-        return Pedido(
-            id=model.id,
-            produtos_ids=model.produtos_ids,
-            cliente_id=model.cliente_id,
-            status=model.status,
-            data_criacao=model.data_criacao
+            data_criacao=pedido.data_criacao,
         )

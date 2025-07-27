@@ -2,19 +2,20 @@ from decimal import Decimal, ROUND_HALF_UP
 
 class Preco:
     def __init__(self, valor):
-        # Convertendo para Decimal para evitar erros de float
+        if isinstance(valor, Preco):
+            self._valor = valor.valor
+            return
+
         try:
-            preco_decimal = Decimal(valor)
+            preco_decimal = Decimal(str(valor))
         except:
             raise ValueError("Preço deve ser um número válido.")
 
         if preco_decimal <= 0:
             raise ValueError("Preço deve ser maior que zero.")
 
-        # Arredonda para 2 casas decimais
         preco_decimal = preco_decimal.quantize(Decimal("0.01"), rounding=ROUND_HALF_UP)
 
-        # Opcional: limite máximo
         if preco_decimal > Decimal("1000000"):
             raise ValueError("Preço não pode ser maior que 1.000.000.")
 
