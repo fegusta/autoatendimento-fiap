@@ -7,10 +7,10 @@ from app.infrastructure.db.pedido_model import PedidoModel
 from app.domain.pedido import Pedido
 from app.domain.enums.status_pedido import StatusPedido
 
-
 class PedidoRepository:
     def __init__(self, session: AsyncSession):
         self.session = session
+        self.model = PedidoModel
 
     async def criar(self, pedido: Pedido) -> Pedido:
         db_pedido = PedidoModel.from_entity(pedido)
@@ -50,3 +50,4 @@ class PedidoRepository:
         )
         pedidos = result.scalars().all()
         return [p.to_entity() for p in pedidos]
+    
