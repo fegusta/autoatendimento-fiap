@@ -110,6 +110,14 @@ uvicorn app.main:app --reload
 
 ## 💳 Integração com Mercado Pago (QRCode e Webhook)
 
+## 3. Deployment
+```bash
+    kubectl apply -f deployment.yaml   
+    kubectl apply -f deployment-postgresql.yaml 
+ ```
+
+## 📬 Rotas principais
+
 ### 1. Configurar variáveis de ambiente
 
 Crie um arquivo `.env` na raiz do projeto com:
