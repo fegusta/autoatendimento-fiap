@@ -6,3 +6,4 @@ class StatusPedido(str, Enum):
     PRONTO = "PRONTO"
     FINALIZADO = "FINALIZADO"
     RECUSADO = "RECUSADO"
+    CANCELADO = "CANCELADO"

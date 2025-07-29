@@ -33,7 +33,9 @@ app/
 ├── schemas/                     # Schemas Pydantic para validação e serialização de dados (entrada/saída da API)
 main.py                          # Ponto de entrada da aplicação
 ```
-
+---
+## 🧱 Desenho da arquitetura
+![Diagrama da arquitetura](diagrama/diagrama-arquitetura.png)
 ---
 
 ## 📋 Funcionalidades
