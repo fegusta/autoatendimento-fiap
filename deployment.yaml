@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: autoatendimento-container
-        image: michelvitor2/autoatendimento-fiap:v1.0.0
+        image: michelvitor2/autoatendimento-fiap:latest
         ports:
         - containerPort: 8000
         resources:
