@@ -1,0 +1,419 @@
+{
+  "info": {
+    "name": "Auto Atendimento Fiap",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "CLIENTE",
+      "item": [
+        {
+          "name": "CADASTRAR CLIENTE",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "http://{{ _.host }}:{{ _.port }}/clientes",
+              "host": [
+                "http://{{ _.host }}:{{ _.port }}/clientes"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"nome\": \"Julana Torres\",\n    \"email\": \"juliana@gmail.com\",\n    \"cpf\": \"123.4\"\n}"
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GET CLIENTES",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://{{ _.host }}:{{ _.port }}/clientes",
+              "host": [
+                "http://{{ _.host }}:{{ _.port }}/clientes"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GET CLIENTE BY ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://{{ _.host }}:{{ _.port }}/clientes/3f098f87-ad18-4c6a-be68-d155ba7efc21",
+              "host": [
+                "http://{{ _.host }}:{{ _.port }}/clientes/3f098f87-ad18-4c6a-be68-d155ba7efc21"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "PRODUTO",
+      "item": [
+        {
+          "name": "CADASTRAR PRODUTO",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "http://{{ _.host }}:{{ _.port }}/produtos",
+              "host": [
+                "http://{{ _.host }}:{{ _.port }}/produtos"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{     \n\t\"nome\": \"Milk Shake Morango\",     \n\t\"descricao\": \"350ml\",     \n\t\"preco\": 15.99,     \n\t\"categoria\": \"Bebida\" \n}"
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "LISTAR PRODUTOS",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://{{ _.host }}:{{ _.port }}/produtos",
+              "host": [
+                "http://{{ _.host }}:{{ _.port }}/produtos"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "BUSCAR PRODUTO POR ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://{{ _.host }}:{{ _.port }}/produtos/e6bb0d14-ddc8-47b1-9941-5411153413b8",
+              "host": [
+                "http://{{ _.host }}:{{ _.port }}/produtos/e6bb0d14-ddc8-47b1-9941-5411153413b8"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "ATUALIZA PRODUTO",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "http://{{ _.host }}:{{ _.port }}/produtos/e6bb0d14-ddc8-47b1-9941-5411153413b8",
+              "host": [
+                "http://{{ _.host }}:{{ _.port }}/produtos/e6bb0d14-ddc8-47b1-9941-5411153413b8"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n     \"nome\": \"Milk Shake Morango\",\n     \"descricao\": \"650ml\",\n     \"preco\": 15.99,\n     \"categoria\": \"Bebida\"\n }"
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "DELETA PRODUTO",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://{{ _.host }}:{{ _.port }}/produtos/e6bb0d14-ddc8-47b1-9941-5411153413b8",
+              "host": [
+                "http://{{ _.host }}:{{ _.port }}/produtos/e6bb0d14-ddc8-47b1-9941-5411153413b8"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "LISTAR PRODUTOS POR CATEGORIA",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8000/produtos/categorias/Bebida",
+              "host": [
+                "http://localhost:8000/produtos/categorias/Bebida"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "PEDIDO",
+      "item": [
+        {
+          "name": "CRIAR PEDIDO",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "http://{{ _.host }}:{{ _.port }}/pedidos",
+              "host": [
+                "http://{{ _.host }}:{{ _.port }}/pedidos"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{     \n\t\"produtos_ids\": \n\t[\n\t\t\"9cb1adc5-3420-4cd4-81b7-5207ff69e334\", \n\t\t\"cb458ec3-60e8-4db0-bb34-62630008e669\"\n\t],     \n\t\"cliente_id\": \"15cbded7-4d8e-410a-b8cf-bf2a06d65bb9\" \n}"
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "LISTAR PEDIDOS",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://{{ _.host }}:{{ _.port }}/pedidos",
+              "host": [
+                "http://{{ _.host }}:{{ _.port }}/pedidos"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "BUSCAR PEDIDO POR ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://{{ _.host }}:{{ _.port }}/pedidos/cfb359ad-aee7-4c68-891f-3b1db0aac708",
+              "host": [
+                "http://{{ _.host }}:{{ _.port }}/pedidos/cfb359ad-aee7-4c68-891f-3b1db0aac708"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "ATUALIZAR STATUS PEDIDO",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "http://{{ _.host }}:{{ _.port }}/pedidos/cfb359ad-aee7-4c68-891f-3b1db0aac708",
+              "host": [
+                "http://{{ _.host }}:{{ _.port }}/pedidos/cfb359ad-aee7-4c68-891f-3b1db0aac708"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\r     \"status\": \"EM_PREPARACAO\"\r }"
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "PATCH STATUS PRONTO",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8000/pedidos/cfb359ad-aee7-4c68-891f-3b1db0aac708",
+              "host": [
+                "http://localhost:8000/pedidos/cfb359ad-aee7-4c68-891f-3b1db0aac708"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\r     \"status\": \"PRONTO\"\r }"
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "LISTAR PEDIDOS EM ANDAMENTO",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8000/pedidos/andamento",
+              "host": [
+                "http://localhost:8000/pedidos/andamento"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "LISTAR PEDIDO POR STATUS",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8000/pedidos/por-status",
+              "host": [
+                "http://localhost:8000/pedidos/por-status"
+              ],
+              "query": [
+                {
+                  "key": "status",
+                  "value": "RECEBIDO"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "CHECKOUT",
+      "item": [
+        {
+          "name": "TESTE CHECKKOUT",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "http://{{ _.host }}:{{ _.port }}/checkout",
+              "host": [
+                "http://{{ _.host }}:{{ _.port }}/checkout"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{        \n\t\"produtos_ids\": \n\t[\n\t\t\"cb458ec3-60e8-4db0-bb34-62630008e669\", \n\t\t\"6d894033-e8b3-47dd-96c8-ccefe3ce6403\"],        \n\t\"cliente_id\": \"15cbded7-4d8e-410a-b8cf-bf2a06d65bb9\"       \n}"
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GET STATUS PAGAMENTO",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8000/pagamento/10708483-5925-4001-91f5-3c7d88716774/status",
+              "host": [
+                "http://localhost:8000/pagamento/10708483-5925-4001-91f5-3c7d88716774/status"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GERAR QRCODE PAGAMENTO",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "http://{{ _.host }}:{{ _.port }}/pagamento/3a3a638d-46c0-4a90-b3ac-70c2cfc6e599/qrcode",
+              "host": [
+                "http://{{ _.host }}:{{ _.port }}/pagamento/3a3a638d-46c0-4a90-b3ac-70c2cfc6e599/qrcode"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "WEBHOOK",
+      "item": [
+        {
+          "name": "NGROK WEBHOOK",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "https://c07349440078.ngrok-free.app/webhook/pagamento",
+              "host": [
+                "https://c07349440078.ngrok-free.app/webhook/pagamento"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{     \n\t\"action\": \"payment.created\",     \n\t\"data\": {       \n\t\t\"id\": \"183906544-990ed747-d9c0-4b27-a435-404aedb936c4\"     \n\t}   \n}"
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "LOCALHOST WEBHOOK",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "http://{{ _.host }}:{{ _.port }}/webhook/pagamento",
+              "host": [
+                "http://{{ _.host }}:{{ _.port }}/webhook/pagamento"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{     \n\t\"action\": \"payment.created\",     \n\t\"data\": {       \n\t\t\"id\": \"183906544-990ed747-d9c0-4b27-a435-404aedb936c4\"     \n\t}   \n}"
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
